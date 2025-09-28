@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VENZZOFFC Menyediakan 
+           Produk Panel And Script Bot </title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #2b2d42 0%, #8d99ae 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+        /* Hiasan Glow */
+        .glow {
+            box-shadow: 0 0 32px 8px #70e2ff, 0 0 8px #b388fe inset;
+        }
+        /* Planet animasi */
+        .planet {
+            position: absolute;
+            left: 10vw; top: 7vh;
+            width: 90px; height: 90px;
+            background: radial-gradient(circle at 30% 40%, #ffb703 70%, #fb8500 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 32px #ffd70080;
+            animation: floatPlanet 4s ease-in-out infinite alternate;
+            z-index: 1;
+        }
+        @keyframes floatPlanet {
+            from { transform: translateY(0);}
+            to { transform: translateY(28px);}
+        }
+        /* Asteroid animasi */
+        .asteroid {
+            position: absolute;
+            right: 10vw; top: 70vh;
+            width: 60px; height: 60px;
+            background: radial-gradient(circle at 60% 40%, #7f5539 60%, #432818 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 14px #c9ada7a0;
+            animation: spinAsteroid 5s linear infinite;
+            z-index: 1;
+        }
+        @keyframes spinAsteroid {
+            from { transform: rotate(0deg);}
+            to { transform: rotate(360deg);}
+        }
+        .stars {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            left: 0; top: 0;
+            pointer-events: none;
+        }
+        .container {
+            position: relative;
+            max-width: 600px;
+            background: rgba(21, 32, 51, 0.85);
+            margin: 70px auto 60px auto;
+            padding: 46px 32px 36px 32px;
+            border-radius: 22px;
+            box-shadow: 0 8px 32px #0006;
+            z-index: 2;
+        }
+        h1 {
+            color: #70e2ff;
+            text-align: center;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 16px #70e2ffbb, 0 0 4px #fff;
+        }
+        h2 {
+            color: #ffd700;
+            margin-top: 0;
+            text-align: center;
+            text-shadow: 0 0 12px #ffd70066;
+        }
+        .produk {
+            margin-bottom: 25px;
+            font-size: 1.08em;
+            text-align: center;
+        }
+        .btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #70e2ff, #ffd700);
+            color: #2b2d42;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            box-shadow: 0 1px 10px #ffd70088;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            margin-top: 16px;
+        }
+        .btn:hover {
+            background: linear-gradient(90deg, #ffd700, #70e2ff);
+            transform: scale(1.08);
+            box-shadow: 0 0 36px #ffd70066;
+        }
+        .color-switcher {
+            margin-top: 28px;
+            text-align: center;
+        }
+        .color-btn {
+            display: inline-block;
+            width:  50%;
+            margin: 0 6px;
+            border: 2px solid #fff;
+            cursor: pointer;
+            box-shadow: 0 2px 7px #ffd70033;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .color-btn.selected, .color-btn:hover {
+            border-color: #ffd700;
+            transform: scale(1.15);
+        }
+        .music-player {
+            text-align: center;
+            margin: 32px 0 0 0;
+        }
+        .music-title {
+            color: #ffd700;
+            font-size: 1.05em;
+            margin-top: 7px;
+            text-shadow: 0 0 6px #fff5;
+        }
+        .product-image {
+            text-align: center;
+            margin: 30px 0 20px 0;
+        }
+        .product-image img {
+            max-width: 320px;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px #ffd70044, 0 0 16px #70e2ff44;
+        }
+        .product-image-caption {
+            color: #ffd700;
+            margin-top: 6px;
+            text-shadow: 0 0 6px #fff5;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hiasan Planet dan Asteroid -->
+    <div class="planet"></div>
+    <div class="asteroid"></div>
+    <!-- Pemutar Lagu Tabobalale -->
+    <div class="music-player glow">
+        <audio controls autoplay loop>
+            <source src="https://cdn.glitch.me/8d1e0e7d-8a8f-4c9e-8bfc-6fae1e3e30c6%2FTabobalale.mp3?v=1695918301359" type="audio/mp3">
+            Browser kamu tidak mendukung pemutar audio.
+        </audio>
+        <div class="music-title">Lagu Latar: Tabobalale</div>
+    </div>
+    <!-- FOTO PRODUK VENZZOFFC -->
+    <div class="product-image glow">
+        <img src="https://files.catbox.moe/wqvnti.jpg" alt="VENZZOFFC">
+        <div class="product-image-caption">VENZZOFFC</div>
+    </div>
+    <!-- Bintang luar angkasa -->
+    <canvas id="stars" class="stars"></canvas>
+    <div class="container glow" id="mainContainer">
+        <h1>VENZZOFFC</h1>
+        <h2>Produk Panel, Script Bot</h2>
+        <div class="produk">
+            VENZZOFFC adalah produk panel SC yang berkualitas dan dapat diandalkan untuk berbagai kebutuhan Multipedia Dan Menjalankan Bot Scrip.<br>
+            Produk kami didesain dengan teknologi terbaru untuk keamanan dan efisiensi.<br><br>
+            <span style="color:#ffd700; font-weight:bold;">VENZZ TANPA BATASS</span>
+        </div>
+        <a href="mailto:info@venzzoffc.com" class="btn">Hubungi Kami</a>
+        <div class="color-switcher">
+            <span style="font-weight:bold; color:#ffd700;">Ganti Warna Ruang Angkasa:</span>
+            <span class="color-btn selected" style="background:#70e2ff;" onclick="changeSpaceTheme('#2b2d42','#70e2ff', this)"></span>
+            <span class="color-btn" style="background:#ffd700;" onclick="changeSpaceTheme('#8d99ae','#ffd700', this)"></span>
+            <span class="color-btn" style="background:#fb8500;" onclick="changeSpaceTheme('#2b2d42','#fb8500', this)"></span>
+            <span class="color-btn" style="background:#b388fe;" onclick="changeSpaceTheme('#0f2027', '#b388fe', this)"></span>
+        </div>
+    </div>
+    <!-- JS Bintang dan tema -->
+    <script>
+        // Bintang animasi
+        const canvas = document.getElementById('stars');
+        const ctx = canvas.getContext('2d');
+        let w = canvas.width = window.innerWidth;
+        let h = canvas.height = window.innerHeight;
+        let stars = [];
+        for (let i=0; i<120; i++) {
+            stars.push({
+                x: Math.random()*w,
+                y: Math.random()*h,
+                r: Math.random()*1.8+0.6,
+                dx: (Math.random()-0.5)*0.25,
+                dy: (Math.random()-0.5)*0.18
+            });
+        }
+        function drawStars() {
+            ctx.clearRect(0,0,w,h);
+            ctx.save();
+            ctx.shadowColor = "#fff";
+            ctx.shadowBlur = 10;
+            for (let s of stars) {
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.r, 0, 2*Math.PI);
+                ctx.fillStyle = "#fff";
+                ctx.fill();
+                s.x += s.dx;
+                s.y += s.dy;
+                if (s.x<0) s.x=w; if (s.x>w) s.x=0;
+                if (s.y<0) s.y=h; if (s.y>h) s.y=0;
+            }
+            ctx.restore();
+            requestAnimationFrame(drawStars);
+        }
+        drawStars();
+        window.addEventListener('resize', () => {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+        });
+
+        // Ganti tema luar angkasa
+        function changeSpaceTheme(bg1, bg2, el) {
+            document.body.style.background = `linear-gradient(135deg, ${bg1} 0%, ${bg2} 100%)`;
+            document.querySelectorAll('.color-btn').forEach(btn => btn.classList.remove('selected'));
+            el.classList.add('selected');
+        }
+    </script>
+</body>
+</html>
